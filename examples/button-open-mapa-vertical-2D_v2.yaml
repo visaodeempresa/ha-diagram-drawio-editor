@@ -1,6 +1,0 @@
-type: button
-name: Open Vertical 2D Map
-icon: mdi:home-floor-plan
-tap_action:
-  action: navigate
-  navigation_path: /ha-drawio-editor?path=samples/mapa-vertical-2D_v2.drawio

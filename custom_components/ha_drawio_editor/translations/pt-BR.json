@@ -4,12 +4,15 @@
       "single_instance_allowed": "Apenas uma configuração do Draw.io Editor é suportada."
     },
     "error": {
+      "default_requires_open": "Um caminho padrão do diagrama só pode ser usado quando a abertura de arquivo estiver habilitada.",
       "invalid_editor_url": "Informe uma URL válida para o editor.",
+      "invalid_default_diagram_path": "Informe um caminho relativo válido para o diagrama padrão dentro da raiz de armazenamento.",
       "invalid_panel_url_path": "Informe um único segmento de URL, sem barras ou espaços.",
       "invalid_storage_path": "Informe um caminho relativo dentro do diretório de configuração do Home Assistant.",
       "png_requires_save": "A exportação PNG só pode ser habilitada quando o salvamento estiver habilitado.",
       "query_requires_open": "A abertura via query string só pode ser habilitada quando a abertura de arquivo estiver habilitada.",
-      "save_requires_open": "O salvamento só pode ser habilitado quando a abertura de arquivo estiver habilitada."
+      "save_requires_open": "O salvamento só pode ser habilitado quando a abertura de arquivo estiver habilitada.",
+      "unsupported_default_extension": "O caminho padrão do diagrama deve terminar com .drawio ou .xml."
     },
     "step": {
       "user": {
@@ -21,6 +24,7 @@
           "sidebar_title": "Título na barra lateral",
           "sidebar_icon": "Ícone na barra lateral",
           "editor_url": "URL do editor",
+          "default_diagram_path": "Caminho do diagrama padrão aberto ao carregar o painel",
           "enable_panel": "Habilitar painel",
           "enable_open_file": "Habilitar abertura de arquivo",
           "enable_query_open": "Habilitar abertura de arquivo pela query string da URL do painel",
@@ -32,9 +36,12 @@
   },
   "options": {
     "error": {
+      "default_requires_open": "Um caminho padrão do diagrama só pode ser usado quando a abertura de arquivo estiver habilitada.",
       "png_requires_save": "A exportação PNG só pode ser habilitada quando o salvamento estiver habilitado.",
       "query_requires_open": "A abertura via query string só pode ser habilitada quando a abertura de arquivo estiver habilitada.",
-      "save_requires_open": "O salvamento só pode ser habilitado quando a abertura de arquivo estiver habilitada."
+      "save_requires_open": "O salvamento só pode ser habilitado quando a abertura de arquivo estiver habilitada.",
+      "invalid_default_diagram_path": "Informe um caminho relativo válido para o diagrama padrão dentro da raiz de armazenamento.",
+      "unsupported_default_extension": "O caminho padrão do diagrama deve terminar com .drawio ou .xml."
     },
     "step": {
       "init": {
@@ -43,6 +50,7 @@
         "data": {
           "enable_panel": "Habilitar painel",
           "enable_open_file": "Habilitar abertura de arquivo",
+          "default_diagram_path": "Caminho do diagrama padrão aberto ao carregar o painel",
           "enable_query_open": "Habilitar abertura de arquivo pela query string da URL do painel",
           "enable_save": "Habilitar salvamento",
           "enable_png_export": "Habilitar exportação automática do PNG irmão ao salvar"

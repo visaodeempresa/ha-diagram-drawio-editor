@@ -13,16 +13,13 @@ cards:
       - `enable_save`
 
       Enable `enable_png_export` when you also want a sibling `.png` file on each save.
+
+      To open the bundled house map directly on the panel without any button, set:
+      - `default_diagram_path: samples/mapa-vertical-2D_v2.drawio`
   - type: grid
     columns: 2
     square: false
     cards:
-      - type: button
-        name: Open Bundled House Map
-        icon: mdi:home-floor-plan
-        tap_action:
-          action: navigate
-          navigation_path: /ha-drawio-editor?path=samples/mapa-vertical-2D_v2.drawio
       - type: button
         name: Open Main Floorplan
         icon: mdi:floor-plan

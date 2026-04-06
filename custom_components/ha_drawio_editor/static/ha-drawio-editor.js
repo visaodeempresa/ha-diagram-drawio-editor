@@ -348,7 +348,7 @@ var HaDrawioEditorPanel = class extends HTMLElement {
     const params = new URL(window.location.href).searchParams;
     const requestedPath = params.get("path")?.trim() ?? "";
     if (!requestedPath) {
-      return "";
+      return this.runtimeConfig.default_diagram_path;
     }
     if (!this.runtimeConfig.feature_flags.enable_query_open) {
       this.showNotice(

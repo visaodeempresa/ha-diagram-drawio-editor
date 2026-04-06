@@ -109,6 +109,7 @@ You do **not** need to run Node.js just to install the integration manually. The
 - `sidebar_title`: Sidebar label shown in the sidebar.
 - `sidebar_icon`: Material Design Icons identifier.
 - `editor_url`: diagrams.net embed URL or a compatible self-hosted URL.
+- `default_diagram_path`: Optional relative diagram path that is opened automatically when the panel loads.
 
 Suggested first-run values:
 
@@ -117,6 +118,7 @@ Suggested first-run values:
 - `sidebar_title`: `Draw.io`
 - `sidebar_icon`: `mdi:vector-polyline-edit`
 - `editor_url`: keep the default value unless you host your own diagrams.net instance
+- `default_diagram_path`: leave empty for a blank panel, or set `samples/mapa-vertical-2D_v2.drawio` to open the bundled house map automatically
 
 ## 🧪 Usage Examples
 
@@ -124,11 +126,13 @@ Suggested first-run values:
 
 See [examples/button-open-diagram.yaml](examples/button-open-diagram.yaml).
 
-### Open the bundled sample house map
+### Open the bundled sample house map automatically when the panel loads
 
 The integration provisions `samples/mapa-vertical-2D_v2.drawio` into the configured storage root on setup if the file does not already exist.
 
-See [examples/button-open-mapa-vertical-2D_v2.yaml](examples/button-open-mapa-vertical-2D_v2.yaml).
+Set `default_diagram_path` to `samples/mapa-vertical-2D_v2.drawio` and open the Draw.io panel from the Home Assistant sidebar.
+
+See [examples/direct-panel-mapa-vertical-2D_v2.yaml](examples/direct-panel-mapa-vertical-2D_v2.yaml).
 
 ### Open a path that will be created on first save
 
