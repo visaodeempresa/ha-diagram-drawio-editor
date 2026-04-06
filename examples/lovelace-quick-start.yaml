@@ -1,0 +1,42 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: |
+      ## Draw.io Quick Start
+
+      Replace `/ha-drawio-editor` if you changed the panel URL path in the integration options.
+
+      Enable these feature flags before using the buttons below:
+      - `enable_panel`
+      - `enable_open_file`
+      - `enable_query_open`
+      - `enable_save`
+
+      Enable `enable_png_export` when you also want a sibling `.png` file on each save.
+  - type: grid
+    columns: 2
+    square: false
+    cards:
+      - type: button
+        name: Open Main Floorplan
+        icon: mdi:floor-plan
+        tap_action:
+          action: navigate
+          navigation_path: /ha-drawio-editor?path=floorplans/main.drawio
+      - type: button
+        name: Create Rack Diagram
+        icon: mdi:server
+        tap_action:
+          action: navigate
+          navigation_path: /ha-drawio-editor?path=datacenter/rack-a.drawio
+  - type: markdown
+    content: |
+      Suggested storage results after saving:
+
+      - `/config/drawio/floorplans/main.drawio`
+      - `/config/drawio/datacenter/rack-a.drawio`
+
+      When PNG export is enabled:
+
+      - `/config/drawio/floorplans/main.png`
+      - `/config/drawio/datacenter/rack-a.png`

@@ -89,9 +89,10 @@ gitGraph
 ### HACS custom repository
 
 1. Add this repository as a custom repository in HACS with category `Integration`.
-2. Install `Draw.io Editor`.
-3. Restart Home Assistant.
-4. Add the integration from `Settings > Devices & Services`.
+2. Do not select `Dashboard`. This repository includes a Home Assistant backend layer and is published for the `Integration` category.
+3. Install `Draw.io Editor`.
+4. Restart Home Assistant.
+5. Add the integration from `Settings > Devices & Services`.
 
 ### Manual install
 
@@ -126,6 +127,10 @@ See [examples/button-open-diagram.yaml](examples/button-open-diagram.yaml).
 ### Open a path that will be created on first save
 
 See [examples/button-create-or-edit-diagram.yaml](examples/button-create-or-edit-diagram.yaml).
+
+### Paste a ready-to-use Lovelace quick-start stack
+
+See [examples/lovelace-quick-start.yaml](examples/lovelace-quick-start.yaml).
 
 ## 🛠️ Development
 

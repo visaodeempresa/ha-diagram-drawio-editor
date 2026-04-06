@@ -46,14 +46,14 @@ jobs:
         run: |
           mkdir -p dist
           cd custom_components
-          zip -r "../dist/ha-diagram-drawio-editor-${{ steps.version.outputs.tag }}.zip" ha_drawio_editor
+          zip -r "../dist/ha-diagram-drawio-editor.zip" ha_drawio_editor
 
       - name: Create or update GitHub release
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifactErrorsFailBuild: true
-          artifacts: dist/ha-diagram-drawio-editor-${{ steps.version.outputs.tag }}.zip
+          artifacts: dist/ha-diagram-drawio-editor.zip
           generateReleaseNotes: true
           name: ${{ steps.version.outputs.tag }}
           tag: ${{ steps.version.outputs.tag }}

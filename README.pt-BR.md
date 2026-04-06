@@ -24,9 +24,10 @@ O repositório não pode ser puramente TypeScript porque custom integrations do 
 ### Repositório customizado no HACS
 
 1. Adicione este repositório como custom repository no HACS com a categoria `Integration`.
-2. Instale `Draw.io Editor`.
-3. Reinicie o Home Assistant.
-4. Adicione a integração em `Settings > Devices & Services`.
+2. Não selecione `Dashboard`. Este repositório tem uma camada backend do Home Assistant e foi publicado para a categoria `Integration`.
+3. Instale `Draw.io Editor`.
+4. Reinicie o Home Assistant.
+5. Adicione a integração em `Settings > Devices & Services`.
 
 ### Instalação local para desenvolvimento
 
@@ -64,6 +65,10 @@ Veja [examples/button-open-diagram.yaml](examples/button-open-diagram.yaml).
 ### Abrir um caminho que será criado no primeiro salvamento
 
 Veja [examples/button-create-or-edit-diagram.yaml](examples/button-create-or-edit-diagram.yaml).
+
+### Colar uma stack Lovelace pronta para o primeiro uso
+
+Veja [examples/lovelace-quick-start.yaml](examples/lovelace-quick-start.yaml).
 
 ## Desenvolvimento
 

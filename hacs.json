@@ -1,5 +1,7 @@
 {
   "name": "Draw.io Editor",
+  "filename": "ha-diagram-drawio-editor.zip",
+  "zip_release": true,
   "content_in_root": false,
   "render_readme": true
 }
