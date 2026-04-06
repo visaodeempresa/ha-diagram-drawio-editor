@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Publish Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate and build
+        run: npm run check
+
+      - name: Read version
+        id: version
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          version = json.loads(Path("custom_components/ha_drawio_editor/manifest.json").read_text())["version"]
+          print(f"version={version}")
+          print(f"tag=v{version}")
+          PY
+
+      - name: Build release artifact
+        run: |
+          mkdir -p dist
+          cd custom_components
+          zip -r "../dist/ha-diagram-drawio-editor-${{ steps.version.outputs.tag }}.zip" ha_drawio_editor
+
+      - name: Create or update GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          artifacts: dist/ha-diagram-drawio-editor-${{ steps.version.outputs.tag }}.zip
+          generateReleaseNotes: true
+          name: ${{ steps.version.outputs.tag }}
+          tag: ${{ steps.version.outputs.tag }}
