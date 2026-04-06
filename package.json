@@ -1,6 +1,6 @@
 {
   "name": "ha-diagram-drawio-editor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Home Assistant custom integration and panel for editing Draw.io files in-place.",
   "repository": {

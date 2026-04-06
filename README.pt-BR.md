@@ -24,9 +24,10 @@ O repositório não pode ser puramente TypeScript porque custom integrations do 
 ### Repositório customizado no HACS
 
 1. Adicione este repositório como custom repository no HACS com a categoria `Integration`.
-2. Instale `Draw.io Editor`.
-3. Reinicie o Home Assistant.
-4. Adicione a integração em `Settings > Devices & Services`.
+2. Não selecione `Dashboard`. Este repositório tem uma camada backend do Home Assistant e foi publicado para a categoria `Integration`.
+3. Instale `Draw.io Editor`.
+4. Reinicie o Home Assistant.
+5. Adicione a integração em `Settings > Devices & Services`.
 
 ### Instalação local para desenvolvimento
 
