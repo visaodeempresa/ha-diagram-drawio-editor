@@ -124,6 +124,12 @@ Suggested first-run values:
 
 See [examples/button-open-diagram.yaml](examples/button-open-diagram.yaml).
 
+### Open the bundled sample house map
+
+The integration provisions `samples/mapa-vertical-2D_v2.drawio` into the configured storage root on setup if the file does not already exist.
+
+See [examples/button-open-mapa-vertical-2D_v2.yaml](examples/button-open-mapa-vertical-2D_v2.yaml).
+
 ### Open a path that will be created on first save
 
 See [examples/button-create-or-edit-diagram.yaml](examples/button-create-or-edit-diagram.yaml).
