@@ -29,8 +29,10 @@ def resolve_diagram_paths(
     hass: HomeAssistant, entry: ConfigEntry, relative_path: str
 ) -> ResolvedDiagramPaths:
     """Resolve a relative diagram path inside the configured storage root."""
-    normalized_relative = relative_path.strip().replace("\\", "/").strip("/")
+    normalized_relative = relative_path.strip().replace("\\", "/")
     if not normalized_relative:
+        raise ValueError("invalid_relative_path")
+    if normalized_relative.startswith("/"):
         raise ValueError("invalid_relative_path")
 
     path_like = Path(normalized_relative)
@@ -74,9 +76,31 @@ def provision_bundled_samples(hass: HomeAssistant, entry: ConfigEntry) -> list[s
     return copied_paths
 
 
+def _ensure_bundled_sample_available(
+    hass: HomeAssistant, entry: ConfigEntry, relative_path: str
+) -> None:
+    """Copy a bundled sample to storage on demand when it is requested."""
+    if relative_path not in BUNDLED_SAMPLE_RELATIVE_PATHS:
+        return
+
+    storage_root = Path(hass.config.path(entry.data[CONF_STORAGE_PATH])).resolve()
+    destination_path = storage_root / relative_path
+    if destination_path.exists():
+        return
+
+    package_root = Path(__file__).resolve().parent
+    source_path = package_root / relative_path
+    if not source_path.exists():
+        return
+
+    destination_path.parent.mkdir(parents=True, exist_ok=True)
+    _atomic_copy_file(source_path, destination_path)
+
+
 def read_diagram(hass: HomeAssistant, entry: ConfigEntry, relative_path: str) -> dict[str, str | bool]:
     """Read a diagram file and expose sibling PNG metadata."""
     resolved = resolve_diagram_paths(hass, entry, relative_path)
+    _ensure_bundled_sample_available(hass, entry, resolved.relative_path)
     if not resolved.diagram_path.exists():
         raise FileNotFoundError(resolved.relative_path)
 

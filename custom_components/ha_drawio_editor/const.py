@@ -6,7 +6,7 @@ from typing import Final
 
 DOMAIN: Final = "ha_drawio_editor"
 ENTRY_TITLE: Final = "Draw.io Editor"
-INTEGRATION_VERSION: Final = "0.1.3"
+INTEGRATION_VERSION: Final = "0.1.4"
 
 CONF_STORAGE_PATH: Final = "storage_path"
 CONF_PANEL_URL_PATH: Final = "panel_url_path"

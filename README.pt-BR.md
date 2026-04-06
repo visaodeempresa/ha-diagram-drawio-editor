@@ -46,6 +46,8 @@ O repositório não pode ser puramente TypeScript porque custom integrations do 
 - `editor_url`: URL embed do diagrams.net ou uma URL self-hosted compatível.
 - `default_diagram_path`: caminho relativo opcional do diagrama aberto automaticamente quando o painel carrega.
 
+Não use URLs estáticas do Home Assistant como `/local/...` em `default_diagram_path`. Esse campo aceita apenas um caminho relativo dentro do `storage_path` configurado, por exemplo `samples/mapa-vertical-2D_v2.drawio`.
+
 ## Rollout recomendado
 
 1. Habilite apenas `enable_panel`.
