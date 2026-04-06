@@ -16,13 +16,19 @@ from .const import (
     CONF_STORAGE_PATH,
     DOMAIN,
     ENTRY_TITLE,
+    OPT_DEFAULT_DIAGRAM_PATH,
     OPT_ENABLE_OPEN_FILE,
     OPT_ENABLE_PANEL,
     OPT_ENABLE_PNG_EXPORT,
     OPT_ENABLE_QUERY_OPEN,
     OPT_ENABLE_SAVE,
 )
-from .settings import build_entry_data, build_options, get_default_form_values, get_feature_flags
+from .settings import (
+    build_entry_data,
+    build_options,
+    get_default_form_values,
+    get_default_options_form_values,
+)
 
 
 def _build_user_schema(values: dict[str, Any]) -> vol.Schema:
@@ -34,6 +40,10 @@ def _build_user_schema(values: dict[str, Any]) -> vol.Schema:
             vol.Required(CONF_SIDEBAR_TITLE, default=values[CONF_SIDEBAR_TITLE]): str,
             vol.Required(CONF_SIDEBAR_ICON, default=values[CONF_SIDEBAR_ICON]): str,
             vol.Required(CONF_EDITOR_URL, default=values[CONF_EDITOR_URL]): str,
+            vol.Optional(
+                OPT_DEFAULT_DIAGRAM_PATH,
+                default=values[OPT_DEFAULT_DIAGRAM_PATH],
+            ): str,
             vol.Required(OPT_ENABLE_PANEL, default=values[OPT_ENABLE_PANEL]): bool,
             vol.Required(
                 OPT_ENABLE_OPEN_FILE, default=values[OPT_ENABLE_OPEN_FILE]
@@ -57,6 +67,10 @@ def _build_options_schema(values: dict[str, Any]) -> vol.Schema:
             vol.Required(
                 OPT_ENABLE_OPEN_FILE, default=values[OPT_ENABLE_OPEN_FILE]
             ): bool,
+            vol.Optional(
+                OPT_DEFAULT_DIAGRAM_PATH,
+                default=values[OPT_DEFAULT_DIAGRAM_PATH],
+            ): str,
             vol.Required(
                 OPT_ENABLE_QUERY_OPEN, default=values[OPT_ENABLE_QUERY_OPEN]
             ): bool,
@@ -118,7 +132,7 @@ class DrawioEditorOptionsFlow(OptionsFlowWithReload):
     ) -> ConfigFlowResult:
         """Manage feature flag updates."""
         errors: dict[str, str] = {}
-        values = get_feature_flags(self.config_entry)
+        values = get_default_options_form_values(self.config_entry)
 
         if user_input is not None:
             values = values | user_input
@@ -134,4 +148,3 @@ class DrawioEditorOptionsFlow(OptionsFlowWithReload):
             data_schema=_build_options_schema(values),
             errors=errors,
         )
-

@@ -6,13 +6,14 @@ from typing import Final
 
 DOMAIN: Final = "ha_drawio_editor"
 ENTRY_TITLE: Final = "Draw.io Editor"
-INTEGRATION_VERSION: Final = "0.1.2"
+INTEGRATION_VERSION: Final = "0.1.3"
 
 CONF_STORAGE_PATH: Final = "storage_path"
 CONF_PANEL_URL_PATH: Final = "panel_url_path"
 CONF_SIDEBAR_TITLE: Final = "sidebar_title"
 CONF_SIDEBAR_ICON: Final = "sidebar_icon"
 CONF_EDITOR_URL: Final = "editor_url"
+OPT_DEFAULT_DIAGRAM_PATH: Final = "default_diagram_path"
 
 OPT_ENABLE_PANEL: Final = "enable_panel"
 OPT_ENABLE_OPEN_FILE: Final = "enable_open_file"
@@ -25,6 +26,7 @@ DEFAULT_PANEL_URL_PATH: Final = "ha-drawio-editor"
 DEFAULT_SIDEBAR_TITLE: Final = "Draw.io"
 DEFAULT_SIDEBAR_ICON: Final = "mdi:vector-polyline-edit"
 DEFAULT_EDITOR_URL: Final = "https://embed.diagrams.net/?embed=1&proto=json&spin=1&libraries=1"
+DEFAULT_DEFAULT_DIAGRAM_PATH: Final = ""
 
 DEFAULT_OPTIONS: Final = {
     OPT_ENABLE_PANEL: False,

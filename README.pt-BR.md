@@ -44,6 +44,7 @@ O repositório não pode ser puramente TypeScript porque custom integrations do 
 - `sidebar_title`: rótulo na barra lateral.
 - `sidebar_icon`: identificador do Material Design Icons.
 - `editor_url`: URL embed do diagrams.net ou uma URL self-hosted compatível.
+- `default_diagram_path`: caminho relativo opcional do diagrama aberto automaticamente quando o painel carrega.
 
 ## Rollout recomendado
 
@@ -62,11 +63,13 @@ O repositório não pode ser puramente TypeScript porque custom integrations do 
 
 Veja [examples/button-open-diagram.yaml](examples/button-open-diagram.yaml).
 
-### Abrir o mapa residencial de exemplo incluído no componente
+### Abrir automaticamente o mapa residencial de exemplo ao carregar o painel
 
 A integração provisiona `samples/mapa-vertical-2D_v2.drawio` para a raiz de armazenamento configurada na inicialização, desde que o arquivo ainda não exista.
 
-Veja [examples/button-open-mapa-vertical-2D_v2.yaml](examples/button-open-mapa-vertical-2D_v2.yaml).
+Defina `default_diagram_path` como `samples/mapa-vertical-2D_v2.drawio` e abra o painel Draw.io pela barra lateral do Home Assistant.
+
+Veja [examples/direct-panel-mapa-vertical-2D_v2.yaml](examples/direct-panel-mapa-vertical-2D_v2.yaml).
 
 ### Abrir um caminho que será criado no primeiro salvamento
 
