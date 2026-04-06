@@ -127,6 +127,10 @@ See [examples/button-open-diagram.yaml](examples/button-open-diagram.yaml).
 
 See [examples/button-create-or-edit-diagram.yaml](examples/button-create-or-edit-diagram.yaml).
 
+### Paste a ready-to-use Lovelace quick-start stack
+
+See [examples/lovelace-quick-start.yaml](examples/lovelace-quick-start.yaml).
+
 ## 🛠️ Development
 
 ```bash

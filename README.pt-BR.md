@@ -65,6 +65,10 @@ Veja [examples/button-open-diagram.yaml](examples/button-open-diagram.yaml).
 
 Veja [examples/button-create-or-edit-diagram.yaml](examples/button-create-or-edit-diagram.yaml).
 
+### Colar uma stack Lovelace pronta para o primeiro uso
+
+Veja [examples/lovelace-quick-start.yaml](examples/lovelace-quick-start.yaml).
+
 ## Desenvolvimento
 
 ```bash
