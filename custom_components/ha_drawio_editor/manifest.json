@@ -1,0 +1,14 @@
+{
+  "domain": "ha_drawio_editor",
+  "name": "Draw.io Editor",
+  "codeowners": [
+    "@visaodeempresa"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/visaodeempresa/ha-diagram-drawio-editor",
+  "issue_tracker": "https://github.com/visaodeempresa/ha-diagram-drawio-editor/issues",
+  "iot_class": "local_push",
+  "integration_type": "service",
+  "requirements": [],
+  "version": "0.1.0"
+}
