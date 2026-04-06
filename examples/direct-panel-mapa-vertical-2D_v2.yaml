@@ -1,0 +1,8 @@
+storage_path: drawio
+panel_url_path: ha-drawio-editor
+default_diagram_path: samples/mapa-vertical-2D_v2.drawio
+enable_panel: true
+enable_open_file: true
+enable_query_open: false
+enable_save: true
+enable_png_export: false

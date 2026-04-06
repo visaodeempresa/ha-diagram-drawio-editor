@@ -23,6 +23,7 @@ export interface RuntimeConfig {
   sidebar_title: string;
   sidebar_icon: string;
   storage_path: string;
+  default_diagram_path: string;
   allowed_extensions: string[];
   feature_flags: FeatureFlags;
   png_export: {
@@ -69,4 +70,3 @@ export interface DrawioMessage {
   config?: Record<string, unknown>;
   format?: string;
 }
-

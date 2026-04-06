@@ -4,12 +4,15 @@
       "single_instance_allowed": "Only one Draw.io Editor configuration is supported."
     },
     "error": {
+      "default_requires_open": "A default diagram path can only be used when file open is enabled.",
       "invalid_editor_url": "Enter a valid editor URL.",
+      "invalid_default_diagram_path": "Enter a valid relative default diagram path inside the storage root.",
       "invalid_panel_url_path": "Enter a single URL segment without slashes or spaces.",
       "invalid_storage_path": "Enter a relative storage path inside your Home Assistant config directory.",
       "png_requires_save": "PNG export can only be enabled when save is enabled.",
       "query_requires_open": "Query-string open can only be enabled when file open is enabled.",
-      "save_requires_open": "Save can only be enabled when file open is enabled."
+      "save_requires_open": "Save can only be enabled when file open is enabled.",
+      "unsupported_default_extension": "The default diagram path must end with .drawio or .xml."
     },
     "step": {
       "user": {
@@ -21,6 +24,7 @@
           "sidebar_title": "Sidebar title",
           "sidebar_icon": "Sidebar icon",
           "editor_url": "Editor URL",
+          "default_diagram_path": "Default diagram path opened when the panel loads",
           "enable_panel": "Enable panel",
           "enable_open_file": "Enable file open",
           "enable_query_open": "Enable opening a file from the panel URL query string",
@@ -32,9 +36,12 @@
   },
   "options": {
     "error": {
+      "default_requires_open": "A default diagram path can only be used when file open is enabled.",
       "png_requires_save": "PNG export can only be enabled when save is enabled.",
       "query_requires_open": "Query-string open can only be enabled when file open is enabled.",
-      "save_requires_open": "Save can only be enabled when file open is enabled."
+      "save_requires_open": "Save can only be enabled when file open is enabled.",
+      "invalid_default_diagram_path": "Enter a valid relative default diagram path inside the storage root.",
+      "unsupported_default_extension": "The default diagram path must end with .drawio or .xml."
     },
     "step": {
       "init": {
@@ -43,6 +50,7 @@
         "data": {
           "enable_panel": "Enable panel",
           "enable_open_file": "Enable file open",
+          "default_diagram_path": "Default diagram path opened when the panel loads",
           "enable_query_open": "Enable opening a file from the panel URL query string",
           "enable_save": "Enable save",
           "enable_png_export": "Enable automatic sibling PNG export on save"
@@ -51,4 +59,3 @@
     }
   }
 }
-

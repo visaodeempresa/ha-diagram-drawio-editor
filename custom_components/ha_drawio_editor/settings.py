@@ -15,6 +15,7 @@ from .const import (
     CONF_SIDEBAR_ICON,
     CONF_SIDEBAR_TITLE,
     CONF_STORAGE_PATH,
+    DEFAULT_DEFAULT_DIAGRAM_PATH,
     DATA_ACTIVE_ENTRY_ID,
     DEFAULT_EDITOR_URL,
     DEFAULT_OPTIONS,
@@ -23,11 +24,13 @@ from .const import (
     DEFAULT_SIDEBAR_TITLE,
     DEFAULT_STORAGE_PATH,
     DOMAIN,
+    ALLOWED_DIAGRAM_SUFFIXES,
     OPT_ENABLE_OPEN_FILE,
     OPT_ENABLE_PANEL,
     OPT_ENABLE_PNG_EXPORT,
     OPT_ENABLE_QUERY_OPEN,
     OPT_ENABLE_SAVE,
+    OPT_DEFAULT_DIAGRAM_PATH,
     PNG_EXPORT_SCOPE_CURRENT_PAGE,
 )
 
@@ -41,6 +44,22 @@ def normalize_storage_path(value: str) -> str:
     normalized = PurePosixPath(raw_value)
     if normalized.is_absolute() or any(part in {"", ".", ".."} for part in normalized.parts):
         raise ValueError("invalid_storage_path")
+
+    return normalized.as_posix()
+
+
+def normalize_default_diagram_path(value: str) -> str:
+    """Validate and normalize the optional default diagram path."""
+    raw_value = value.strip().replace("\\", "/").strip("/")
+    if not raw_value:
+        return ""
+
+    normalized = PurePosixPath(raw_value)
+    if normalized.is_absolute() or any(part in {"", ".", ".."} for part in normalized.parts):
+        raise ValueError("invalid_default_diagram_path")
+
+    if normalized.suffix.lower() not in ALLOWED_DIAGRAM_SUFFIXES:
+        raise ValueError("unsupported_default_extension")
 
     return normalized.as_posix()
 
@@ -97,10 +116,13 @@ def build_entry_data(user_input: dict[str, Any]) -> dict[str, str]:
 
 def build_options(user_input: dict[str, Any]) -> dict[str, bool]:
     """Build validated feature flags."""
-    options = {
+    options: dict[str, Any] = {
         key: bool(user_input.get(key, default_value))
         for key, default_value in DEFAULT_OPTIONS.items()
     }
+    options[OPT_DEFAULT_DIAGRAM_PATH] = normalize_default_diagram_path(
+        str(user_input.get(OPT_DEFAULT_DIAGRAM_PATH, DEFAULT_DEFAULT_DIAGRAM_PATH))
+    )
 
     if options[OPT_ENABLE_SAVE] and not options[OPT_ENABLE_OPEN_FILE]:
         raise ValueError("save_requires_open")
@@ -110,6 +132,9 @@ def build_options(user_input: dict[str, Any]) -> dict[str, bool]:
 
     if options[OPT_ENABLE_PNG_EXPORT] and not options[OPT_ENABLE_SAVE]:
         raise ValueError("png_requires_save")
+
+    if options[OPT_DEFAULT_DIAGRAM_PATH] and not options[OPT_ENABLE_OPEN_FILE]:
+        raise ValueError("default_requires_open")
 
     return options
 
@@ -149,6 +174,9 @@ def build_runtime_config(entry: ConfigEntry) -> dict[str, Any]:
         "sidebar_title": entry.data[CONF_SIDEBAR_TITLE],
         "sidebar_icon": entry.data[CONF_SIDEBAR_ICON],
         "storage_path": entry.data[CONF_STORAGE_PATH],
+        "default_diagram_path": str(
+            entry.options.get(OPT_DEFAULT_DIAGRAM_PATH, DEFAULT_DEFAULT_DIAGRAM_PATH)
+        ),
         "allowed_extensions": [".drawio", ".xml"],
         "feature_flags": get_feature_flags(entry),
         "png_export": {
@@ -167,6 +195,7 @@ def get_default_form_values() -> dict[str, Any]:
         CONF_SIDEBAR_TITLE: DEFAULT_SIDEBAR_TITLE,
         CONF_SIDEBAR_ICON: DEFAULT_SIDEBAR_ICON,
         CONF_EDITOR_URL: DEFAULT_EDITOR_URL,
+        OPT_DEFAULT_DIAGRAM_PATH: DEFAULT_DEFAULT_DIAGRAM_PATH,
         **DEFAULT_OPTIONS,
     }
 
@@ -175,5 +204,7 @@ def get_default_options_form_values(entry: ConfigEntry) -> dict[str, Any]:
     """Return the default values shown in the options flow."""
     return get_feature_flags(entry) | {
         OPT_ENABLE_PANEL: get_feature_flags(entry)[OPT_ENABLE_PANEL],
+        OPT_DEFAULT_DIAGRAM_PATH: str(
+            entry.options.get(OPT_DEFAULT_DIAGRAM_PATH, DEFAULT_DEFAULT_DIAGRAM_PATH)
+        ),
     }
-

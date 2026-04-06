@@ -392,7 +392,7 @@ class HaDrawioEditorPanel extends HTMLElement {
     const requestedPath = params.get("path")?.trim() ?? "";
 
     if (!requestedPath) {
-      return "";
+      return this.runtimeConfig.default_diagram_path;
     }
 
     if (!this.runtimeConfig.feature_flags.enable_query_open) {
