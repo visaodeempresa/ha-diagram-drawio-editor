@@ -6,12 +6,13 @@ import base64
 from dataclasses import dataclass
 import os
 from pathlib import Path
+from shutil import copyfile
 import tempfile
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
-from .const import ALLOWED_DIAGRAM_SUFFIXES, CONF_STORAGE_PATH
+from .const import ALLOWED_DIAGRAM_SUFFIXES, BUNDLED_SAMPLE_RELATIVE_PATHS, CONF_STORAGE_PATH
 
 
 @dataclass(slots=True, frozen=True)
@@ -51,6 +52,26 @@ def resolve_diagram_paths(
         diagram_path=diagram_path,
         png_path=diagram_path.with_suffix(".png"),
     )
+
+
+def provision_bundled_samples(hass: HomeAssistant, entry: ConfigEntry) -> list[str]:
+    """Copy bundled sample diagrams into the configured storage root."""
+    storage_root = Path(hass.config.path(entry.data[CONF_STORAGE_PATH])).resolve()
+    package_root = Path(__file__).resolve().parent
+    copied_paths: list[str] = []
+
+    for relative_path in BUNDLED_SAMPLE_RELATIVE_PATHS:
+        source_path = package_root / relative_path
+        destination_path = storage_root / relative_path
+
+        if not source_path.exists() or destination_path.exists():
+            continue
+
+        destination_path.parent.mkdir(parents=True, exist_ok=True)
+        _atomic_copy_file(source_path, destination_path)
+        copied_paths.append(relative_path)
+
+    return copied_paths
 
 
 def read_diagram(hass: HomeAssistant, entry: ConfigEntry, relative_path: str) -> dict[str, str | bool]:
@@ -128,3 +149,23 @@ def _atomic_write_bytes(path: Path, content: bytes) -> None:
             pass
         raise
 
+
+def _atomic_copy_file(source_path: Path, destination_path: Path) -> None:
+    """Copy a file atomically within the target directory."""
+    file_descriptor, temporary_path = tempfile.mkstemp(
+        dir=str(destination_path.parent),
+        prefix=f".{destination_path.name}.",
+        suffix=".tmp",
+    )
+
+    os.close(file_descriptor)
+
+    try:
+        copyfile(source_path, temporary_path)
+        os.replace(temporary_path, destination_path)
+    except Exception:
+        try:
+            os.unlink(temporary_path)
+        except FileNotFoundError:
+            pass
+        raise

@@ -8,6 +8,7 @@ from homeassistant.helpers import config_validation as cv
 
 from .const import DATA_ACTIVE_ENTRY_ID, DOMAIN
 from .panel import async_setup_panel, async_unload_panel
+from .storage import provision_bundled_samples
 from .websocket_api import async_setup_websocket_api
 
 CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
@@ -25,6 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data[DOMAIN][entry.entry_id] = entry
     hass.data[DATA_ACTIVE_ENTRY_ID] = entry.entry_id
 
+    await hass.async_add_executor_job(provision_bundled_samples, hass, entry)
     async_setup_websocket_api(hass)
     await async_setup_panel(hass, entry)
 

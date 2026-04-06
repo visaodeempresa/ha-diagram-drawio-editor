@@ -6,7 +6,7 @@ from typing import Final
 
 DOMAIN: Final = "ha_drawio_editor"
 ENTRY_TITLE: Final = "Draw.io Editor"
-INTEGRATION_VERSION: Final = "0.1.0"
+INTEGRATION_VERSION: Final = "0.1.2"
 
 CONF_STORAGE_PATH: Final = "storage_path"
 CONF_PANEL_URL_PATH: Final = "panel_url_path"
@@ -35,6 +35,9 @@ DEFAULT_OPTIONS: Final = {
 }
 
 ALLOWED_DIAGRAM_SUFFIXES: Final = frozenset({".drawio", ".xml"})
+BUNDLED_SAMPLE_RELATIVE_PATHS: Final = (
+    "samples/mapa-vertical-2D_v2.drawio",
+)
 
 WEBCOMPONENT_NAME: Final = "ha-drawio-editor-panel"
 STATIC_URL_BASE: Final = f"/api/{DOMAIN}/static"
@@ -51,4 +54,3 @@ WS_TYPE_SAVE_DIAGRAM: Final = f"{DOMAIN}/save_diagram"
 PNG_EXPORT_SCOPE_CURRENT_PAGE: Final = "current_page"
 
 BLANK_DIAGRAM_XML: Final = """<mxfile host="app.diagrams.net" agent="ha-drawio-editor" version="26.0.11" type="device"><diagram id="blank-page" name="Page-1"><mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0"><root><mxCell id="0" /><mxCell id="1" parent="0" /></root></mxGraphModel></diagram></mxfile>"""
-
