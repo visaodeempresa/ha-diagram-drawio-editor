@@ -4,10 +4,13 @@ from __future__ import annotations
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import config_validation as cv
 
 from .const import DATA_ACTIVE_ENTRY_ID, DOMAIN
 from .panel import async_setup_panel, async_unload_panel
 from .websocket_api import async_setup_websocket_api
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
@@ -47,4 +50,3 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 async def _async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
     """Reload the config entry when options change."""
     await hass.config_entries.async_reload(entry.entry_id)
-

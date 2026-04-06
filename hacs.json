@@ -1,9 +1,5 @@
 {
   "name": "Draw.io Editor",
   "content_in_root": false,
-  "domains": [
-    "ha_drawio_editor"
-  ],
   "render_readme": true
 }
-
