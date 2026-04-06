@@ -62,6 +62,12 @@ O repositório não pode ser puramente TypeScript porque custom integrations do 
 
 Veja [examples/button-open-diagram.yaml](examples/button-open-diagram.yaml).
 
+### Abrir o mapa residencial de exemplo incluído no componente
+
+A integração provisiona `samples/mapa-vertical-2D_v2.drawio` para a raiz de armazenamento configurada na inicialização, desde que o arquivo ainda não exista.
+
+Veja [examples/button-open-mapa-vertical-2D_v2.yaml](examples/button-open-mapa-vertical-2D_v2.yaml).
+
 ### Abrir um caminho que será criado no primeiro salvamento
 
 Veja [examples/button-create-or-edit-diagram.yaml](examples/button-create-or-edit-diagram.yaml).

@@ -18,6 +18,12 @@ cards:
     square: false
     cards:
       - type: button
+        name: Open Bundled House Map
+        icon: mdi:home-floor-plan
+        tap_action:
+          action: navigate
+          navigation_path: /ha-drawio-editor?path=samples/mapa-vertical-2D_v2.drawio
+      - type: button
         name: Open Main Floorplan
         icon: mdi:floor-plan
         tap_action:
@@ -33,6 +39,7 @@ cards:
     content: |
       Suggested storage results after saving:
 
+      - `/config/drawio/samples/mapa-vertical-2D_v2.drawio`
       - `/config/drawio/floorplans/main.drawio`
       - `/config/drawio/datacenter/rack-a.drawio`
 
