@@ -111,6 +111,8 @@ You do **not** need to run Node.js just to install the integration manually. The
 - `editor_url`: diagrams.net embed URL or a compatible self-hosted URL.
 - `default_diagram_path`: Optional relative diagram path that is opened automatically when the panel loads.
 
+Do not use Home Assistant static URLs such as `/local/...` in `default_diagram_path`. This field only accepts a relative file path inside the configured `storage_path`, for example `samples/mapa-vertical-2D_v2.drawio`.
+
 Suggested first-run values:
 
 - `storage_path`: `drawio`
