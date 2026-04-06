@@ -37,8 +37,10 @@ from .const import (
 
 def normalize_storage_path(value: str) -> str:
     """Validate and normalize the configured storage path."""
-    raw_value = value.strip().replace("\\", "/").strip("/")
+    raw_value = value.strip().replace("\\", "/")
     if not raw_value:
+        raise ValueError("invalid_storage_path")
+    if raw_value.startswith("/"):
         raise ValueError("invalid_storage_path")
 
     normalized = PurePosixPath(raw_value)
@@ -50,9 +52,11 @@ def normalize_storage_path(value: str) -> str:
 
 def normalize_default_diagram_path(value: str) -> str:
     """Validate and normalize the optional default diagram path."""
-    raw_value = value.strip().replace("\\", "/").strip("/")
+    raw_value = value.strip().replace("\\", "/")
     if not raw_value:
         return ""
+    if raw_value.startswith("/"):
+        raise ValueError("invalid_default_diagram_path")
 
     normalized = PurePosixPath(raw_value)
     if normalized.is_absolute() or any(part in {"", ".", ".."} for part in normalized.parts):
