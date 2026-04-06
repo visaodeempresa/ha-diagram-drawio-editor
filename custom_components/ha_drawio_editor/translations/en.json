@@ -1,0 +1,54 @@
+{
+  "config": {
+    "abort": {
+      "single_instance_allowed": "Only one Draw.io Editor configuration is supported."
+    },
+    "error": {
+      "invalid_editor_url": "Enter a valid editor URL.",
+      "invalid_panel_url_path": "Enter a single URL segment without slashes or spaces.",
+      "invalid_storage_path": "Enter a relative storage path inside your Home Assistant config directory.",
+      "png_requires_save": "PNG export can only be enabled when save is enabled.",
+      "query_requires_open": "Query-string open can only be enabled when file open is enabled.",
+      "save_requires_open": "Save can only be enabled when file open is enabled."
+    },
+    "step": {
+      "user": {
+        "title": "Set up Draw.io Editor",
+        "description": "Configure the Home Assistant panel and the initial feature rollout flags.",
+        "data": {
+          "storage_path": "Diagram storage path",
+          "panel_url_path": "Panel URL path",
+          "sidebar_title": "Sidebar title",
+          "sidebar_icon": "Sidebar icon",
+          "editor_url": "Editor URL",
+          "enable_panel": "Enable panel",
+          "enable_open_file": "Enable file open",
+          "enable_query_open": "Enable opening a file from the panel URL query string",
+          "enable_save": "Enable save",
+          "enable_png_export": "Enable automatic sibling PNG export on save"
+        }
+      }
+    }
+  },
+  "options": {
+    "error": {
+      "png_requires_save": "PNG export can only be enabled when save is enabled.",
+      "query_requires_open": "Query-string open can only be enabled when file open is enabled.",
+      "save_requires_open": "Save can only be enabled when file open is enabled."
+    },
+    "step": {
+      "init": {
+        "title": "Draw.io Editor feature flags",
+        "description": "Enable features gradually for controlled testing.",
+        "data": {
+          "enable_panel": "Enable panel",
+          "enable_open_file": "Enable file open",
+          "enable_query_open": "Enable opening a file from the panel URL query string",
+          "enable_save": "Enable save",
+          "enable_png_export": "Enable automatic sibling PNG export on save"
+        }
+      }
+    }
+  }
+}
+

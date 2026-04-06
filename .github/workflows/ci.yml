@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - develop
+      - release
+      - main
+  pull_request:
+    branches:
+      - release
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    name: Frontend Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate version consistency
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          
+          package_version = json.loads(Path("package.json").read_text())["version"]
+          manifest_version = json.loads(Path("custom_components/ha_drawio_editor/manifest.json").read_text())["version"]
+          
+          if package_version != manifest_version:
+              raise SystemExit(
+                  f"Version mismatch: package.json={package_version} manifest.json={manifest_version}"
+              )
+          PY
+
+      - name: Type-check frontend
+        run: npm run lint
+
+      - name: Build frontend bundle
+        run: npm run build
+
+      - name: Ensure compiled bundle is committed
+        run: git diff --exit-code -- custom_components/ha_drawio_editor/static/ha-drawio-editor.js
+
+  python:
+    name: Python Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Compile custom component
+        run: python -m compileall custom_components
+
+  validate-hacs:
+    name: HACS Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate with HACS
+        uses: hacs/action@main
+        with:
+          category: integration
+
+  hassfest:
+    name: Hassfest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate with hassfest
+        uses: home-assistant/actions/hassfest@master
+

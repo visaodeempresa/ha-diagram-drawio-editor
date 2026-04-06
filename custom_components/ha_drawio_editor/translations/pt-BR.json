@@ -1,0 +1,53 @@
+{
+  "config": {
+    "abort": {
+      "single_instance_allowed": "Apenas uma configuração do Draw.io Editor é suportada."
+    },
+    "error": {
+      "invalid_editor_url": "Informe uma URL válida para o editor.",
+      "invalid_panel_url_path": "Informe um único segmento de URL, sem barras ou espaços.",
+      "invalid_storage_path": "Informe um caminho relativo dentro do diretório de configuração do Home Assistant.",
+      "png_requires_save": "A exportação PNG só pode ser habilitada quando o salvamento estiver habilitado.",
+      "query_requires_open": "A abertura via query string só pode ser habilitada quando a abertura de arquivo estiver habilitada.",
+      "save_requires_open": "O salvamento só pode ser habilitado quando a abertura de arquivo estiver habilitada."
+    },
+    "step": {
+      "user": {
+        "title": "Configurar Draw.io Editor",
+        "description": "Configure o painel do Home Assistant e as flags iniciais de rollout.",
+        "data": {
+          "storage_path": "Caminho de armazenamento dos diagramas",
+          "panel_url_path": "Caminho de URL do painel",
+          "sidebar_title": "Título na barra lateral",
+          "sidebar_icon": "Ícone na barra lateral",
+          "editor_url": "URL do editor",
+          "enable_panel": "Habilitar painel",
+          "enable_open_file": "Habilitar abertura de arquivo",
+          "enable_query_open": "Habilitar abertura de arquivo pela query string da URL do painel",
+          "enable_save": "Habilitar salvamento",
+          "enable_png_export": "Habilitar exportação automática do PNG irmão ao salvar"
+        }
+      }
+    }
+  },
+  "options": {
+    "error": {
+      "png_requires_save": "A exportação PNG só pode ser habilitada quando o salvamento estiver habilitado.",
+      "query_requires_open": "A abertura via query string só pode ser habilitada quando a abertura de arquivo estiver habilitada.",
+      "save_requires_open": "O salvamento só pode ser habilitado quando a abertura de arquivo estiver habilitada."
+    },
+    "step": {
+      "init": {
+        "title": "Flags de feature do Draw.io Editor",
+        "description": "Habilite recursos gradualmente para testes controlados.",
+        "data": {
+          "enable_panel": "Habilitar painel",
+          "enable_open_file": "Habilitar abertura de arquivo",
+          "enable_query_open": "Habilitar abertura de arquivo pela query string da URL do painel",
+          "enable_save": "Habilitar salvamento",
+          "enable_png_export": "Habilitar exportação automática do PNG irmão ao salvar"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "ha-diagram-drawio-editor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Home Assistant custom integration and panel for editing Draw.io files in-place.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/visaodeempresa/ha-diagram-drawio-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/visaodeempresa/ha-diagram-drawio-editor/issues"
+  },
+  "homepage": "https://github.com/visaodeempresa/ha-diagram-drawio-editor#readme",
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "lint": "tsc --noEmit",
+    "check": "npm run lint && npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.3",
+    "typescript": "^5.8.3"
+  }
+}
