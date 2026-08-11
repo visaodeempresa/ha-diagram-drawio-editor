@@ -1,3 +1,13 @@
+<!-- MW-BRAND:BEGIN — gerado por IA/tools/mw-brand.sh · não editar à mão -->
+<p align="center">
+  <a href="https://github.com/visaodeempresa">
+    <img src="docs/brand/logo.png" alt="Visão de Empresa — MAYCON WILLIAN OLIVEIRA" width="96">
+  </a>
+  <br>
+  <sub><b>Visão de Empresa</b> · componente de Home Assistant por MAYCON WILLIAN OLIVEIRA</sub>
+</p>
+<!-- MW-BRAND:END -->
+
 # 🧭 Draw.io Editor for Home Assistant
 
 [![CI](https://img.shields.io/github/actions/workflow/status/visaodeempresa/ha-diagram-drawio-editor/ci.yml?branch=develop&label=CI%20develop)](https://github.com/visaodeempresa/ha-diagram-drawio-editor/actions/workflows/ci.yml)
